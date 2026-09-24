@@ -1,6 +1,6 @@
 package modelo;
 
-public class Pelicula extends Recurso{
+public class Pelicula extends Recurso{ 
 	
 	//Datos de "Pelicula"
 	private String director;
