@@ -9,7 +9,6 @@ public class Usuario {
 	
 	// Constructor de "Usuario"
 	public Usuario(int id, String nombre, String email) {
-		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.email = email;
@@ -40,6 +39,10 @@ public class Usuario {
 		this.email = email;
 	}
 	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + "]";
+	}
 	
 
 }
