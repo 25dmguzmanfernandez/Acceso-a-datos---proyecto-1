@@ -49,7 +49,7 @@ public class GestionUsuarios {
 		}
 
 		for (Usuario usuario : usuarios.values()) {
-			System.out.println();
+			System.out.println("ID = " + usuario.getId() + "/ nombre = " + usuario.getNombre() + " / email = " + usuario.getEmail());
 		}
 
 	}
