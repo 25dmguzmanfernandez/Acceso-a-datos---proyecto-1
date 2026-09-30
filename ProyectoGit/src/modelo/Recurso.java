@@ -3,13 +3,13 @@ package modelo;
 public class Recurso {
 	
 	// Datos de "Recurso"
-	private int id;
+	private String id;
 	private String titulo;
 	private int año;
 	private boolean disponible;
 	
 	// Constructor de "Recurso"
-	public Recurso(int id, String titulo, int año, boolean disponible) {
+	public Recurso(String id, String titulo, int año, boolean disponible) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -18,11 +18,11 @@ public class Recurso {
 	}
 	
 	// Getters y Setters
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
