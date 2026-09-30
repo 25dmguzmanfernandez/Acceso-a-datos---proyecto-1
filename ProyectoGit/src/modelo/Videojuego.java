@@ -16,11 +16,11 @@ public class Videojuego extends Recurso {
 	}
 
 	// Getters y Setters
-	public String getplataforma() {
+	public String getPlataforma() {
 		return plataforma;
 	}
 
-	public void setplataforma(String plataforma) {
+	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
 

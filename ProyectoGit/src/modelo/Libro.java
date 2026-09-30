@@ -24,7 +24,7 @@ public class Libro extends Recurso {
 		this.autor = autor;
 	}
 
-	public int setPaginas() {
+	public int getPaginas() {
 		return paginas;
 	}
 
