@@ -82,7 +82,7 @@ public class GestionRecursos {
 
 	// --- LISTAR ---
 	// LISTA DE RECURSOS
-	public void listaRecursos() {
+	public static void listaRecursos() {
 
 		if (recursos.isEmpty()) {
 			System.out.println("No hay recursos");
@@ -96,7 +96,7 @@ public class GestionRecursos {
 	}
 
 	// LISTA DE PELICULAS
-	public void listaPeliculas() {
+	public static void listaPeliculas() {
 
 		if (recursos.isEmpty()) {
 			System.out.println("No hay recursos");
@@ -113,7 +113,7 @@ public class GestionRecursos {
 	}
 
 	// LISTA DE LIBROS
-	public void listaLibros() {
+	public static void listaLibros() {
 
 		if (recursos.isEmpty()) {
 			System.out.println("No hay recursos");
@@ -130,7 +130,7 @@ public class GestionRecursos {
 	}
 
 	// LISTA DE VIDEOJUGEOS
-	public void listaVideojuegos() {
+	public static void listaVideojuegos() {
 
 		if (recursos.isEmpty()) {
 			System.out.println("No hay recursos");
@@ -146,24 +146,63 @@ public class GestionRecursos {
 
 	}
 
+	// LISTA DE RECURSOS DISPONIBLES
+	public static void listaDisponibles() {
+		
+		if (recursos.isEmpty()) {
+			System.out.println("No hay recursos");
+			return;
+		}
+		
+		for (Recurso recurso : recursos.values()) {
+			if (recurso.isDisponible() == true) {
+				System.out.println(recurso);
+			}
+
+		}
+		
+	}
+
+	// LISTA DE RECURSOS PRESTADOS
+	public static void listaPrestados() {
+		
+		if (recursos.isEmpty()) {
+			System.out.println("No hay recursos");
+			return;
+		}
+		
+		for (Recurso recurso : recursos.values()) {
+			if (recurso.isDisponible() == false) {
+				System.out.println(recurso);
+			}
+
+		}
+		
+	}
+	
 	// --- BUSCAR ---
 	// BUSCAR RECURSO POR ID
-	public Recurso buscarRecursoId(String id) {
+	public static Recurso buscarRecursoId(String id) {
 
 		return recursos.get(id);
 
 	}
 
 	// BUSCAR RECURSO POR TITULO
-	public Recurso buscarRecursoTitulo(String titulo) {
+	public static Recurso buscarRecursoTitulo(String titulo) {
 
+		for(Recurso Recurso : recursos.values()) {
+			if (Recurso.getTitulo().equalsIgnoreCase(titulo)) {
+	            return Recurso;
+	        }
+		}
 		return recursos.get(titulo);
 
 	}
-
+	
 	// --- MODIFICAR ---
 	// MODIFICAR PELICULA
-	public boolean modificarPelicula(String id, String titulo, int año, boolean disponible, String director,
+	public static boolean modificarPelicula(String id, String titulo, int año, boolean disponible, String director,
 			int duracion) {
 
 		Recurso modPelicula = recursos.get(id);
@@ -193,7 +232,7 @@ public class GestionRecursos {
 	}
 
 	// MODIFICAR LIBRO
-	public boolean modificarLibro(String id, String titulo, int año, boolean disponible, String autor, int paginas) {
+	public static boolean modificarLibro(String id, String titulo, int año, boolean disponible, String autor, int paginas) {
 
 		Recurso modLibro = recursos.get(id);
 
@@ -221,8 +260,8 @@ public class GestionRecursos {
 		return true;
 	}
 
-	// MODIFICAR LIBRO
-	public boolean modificarVideojuego(String id, String titulo, int año, boolean disponible, String plataforma,
+	// MODIFICAR VIDEOJUEGO
+	public static boolean modificarVideojuego(String id, String titulo, int año, boolean disponible, String plataforma,
 			int PEGI) {
 
 		Recurso modVideojuego = recursos.get(id);
@@ -253,7 +292,7 @@ public class GestionRecursos {
 
 	// --- ELIMINAR, GUARDAR y CARGAR ---
 	// ELIMINAR RECURSO
-	public boolean eliminarRecurso(String id) {
+	public static boolean eliminarRecurso(String id) {
 
 		if (!recursos.containsKey(id)) {
 			System.out.println("Este recurso no existe");
@@ -270,7 +309,7 @@ public class GestionRecursos {
 
 	}
 
-	// GUARDAR USUARIOS
+	// GUARDAR RECURSOS
 	private static void guardarRecursos() {
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fichero))) {
@@ -304,7 +343,7 @@ public class GestionRecursos {
 	}
 
 	// CARGAR RECURSOS
-	private void cargarRecursos() {
+	public static void cargarRecursos() {
 
 	    try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
 
