@@ -191,12 +191,12 @@ public class GestionRecursos {
 	// BUSCAR RECURSO POR TITULO
 	public static Recurso buscarRecursoTitulo(String titulo) {
 
-		for(Recurso Recurso : recursos.values()) {
-			if (Recurso.getTitulo().equalsIgnoreCase(titulo)) {
-	            return Recurso;
+		for(Recurso recurso : recursos.values()) {
+			if (recurso.getTitulo().equalsIgnoreCase(titulo)) {
+	            return recurso;
 	        }
 		}
-		return recursos.get(titulo);
+		return null;
 
 	}
 	
