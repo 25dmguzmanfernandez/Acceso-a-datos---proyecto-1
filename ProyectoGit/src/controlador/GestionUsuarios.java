@@ -14,7 +14,7 @@ public class GestionUsuarios {
 	private static HashMap<Integer, Usuario> usuarios = new HashMap<>();
 
 	private static String fichero = "usuarios.txt";
-	
+
 	public GestionUsuarios() {
 		usuarios = new HashMap<>();
 		cargarUsuarios();
@@ -41,7 +41,7 @@ public class GestionUsuarios {
 	}
 
 	// LISTA DE USURAIOS
-	public void listaUsuarios() {
+	public static void listaUsuarios() {
 
 		if (usuarios.isEmpty()) {
 			System.out.println("No hay usuarios");
@@ -49,20 +49,34 @@ public class GestionUsuarios {
 		}
 
 		for (Usuario usuario : usuarios.values()) {
-			System.out.println("ID = " + usuario.getId() + "/ nombre = " + usuario.getNombre() + " / email = " + usuario.getEmail());
+			System.out.println(usuario);
 		}
 
 	}
 
-	// BUSCAR USUARIO
-	public Usuario buscarUsuario(int id) {
+	// BUSCAR USUARIO POR ID
+	public static Usuario buscarUsuarioId(int id) {
 
 		return usuarios.get(id);
 
 	}
 
+	// BUSCAR USUARIO POR NOMBRE
+
+	public static Usuario buscarUsuarioNombre(String nombre) {
+
+		for (Usuario usuario : usuarios.values()) {
+			if (usuario.getNombre().equalsIgnoreCase(nombre)) {
+				return usuario;
+			}
+		}
+
+		return null;
+
+	}
+
 	// MODIFICAR USUARIO
-	public boolean modificarUsuario(int id, String nombre, String email) {
+	public static boolean modificarUsuario(int id, String nombre, String email) {
 
 		Usuario modUsuario = usuarios.get(id);
 
@@ -77,12 +91,13 @@ public class GestionUsuarios {
 
 		guardarUsuarios();
 
+		System.out.println("Usuario modificado correctamente");
 		return true;
 
 	}
 
 	// ELIMINAR USUARIO
-	public boolean eliminarUsuario(int id) {
+	public static boolean eliminarUsuario(int id) {
 
 		if (!usuarios.containsKey(id)) {
 			System.out.println("Este usuario no existe");
@@ -117,7 +132,7 @@ public class GestionUsuarios {
 	}
 
 	// CARGAR USUARIOS
-	private void cargarUsuarios() {
+	private static void cargarUsuarios() {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
 
