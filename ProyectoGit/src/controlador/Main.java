@@ -28,6 +28,9 @@ public class Main {
 		String titulo;
 		int año;
 		boolean disponible;
+		int paginas;
+		int duracion;
+		int PEGI;
 
 		// CONSULTAS
 		while (opcion != 4) {
@@ -62,15 +65,21 @@ public class Main {
 					sc.nextLine();
 
 					// ATRIBUTOS GENRALES DE RECURSOS
-					System.out.print("ID: ");
+					System.out.print("ID (ejemplo L01, V04): ");
 					idRec = sc.nextLine();
 
 					System.out.print("Titulo: ");
 					titulo = sc.nextLine();
 
 					System.out.print("Año: ");
-					año = sc.nextInt();
-					sc.nextLine();
+					try {
+						año = sc.nextInt();
+						sc.nextLine();
+					} catch (Exception e) {
+						System.out.println("Año no valido, se asignara 0");
+						año = 0;
+						sc.nextLine();
+					}
 
 					disponible = true;
 
@@ -82,8 +91,14 @@ public class Main {
 						String autor = sc.nextLine();
 
 						System.out.print("Numero de Paginas: ");
-						int paginas = sc.nextInt();
-						sc.nextLine();
+						try {
+							paginas = sc.nextInt();
+							sc.nextLine();
+						} catch (Exception e) {
+							System.out.println("Numero de paginas no valido, se asignara 0");
+							paginas = 0;
+							sc.nextLine();
+						}
 
 						GestionRecursos.crearLibro(idRec, titulo, año, disponible, autor, paginas);
 						break;
@@ -94,7 +109,7 @@ public class Main {
 						String director = sc.nextLine();
 
 						System.out.print("Duración en minutos: ");
-						int duracion = sc.nextInt();
+						duracion = sc.nextInt();
 						sc.nextLine();
 
 						GestionRecursos.crearPelicula(idRec, titulo, año, disponible, director, duracion);
@@ -106,9 +121,14 @@ public class Main {
 						String plataforma = sc.nextLine();
 
 						System.out.print("PEGI: ");
-						int PEGI = sc.nextInt();
-						sc.nextLine();
-
+						try {
+							PEGI = sc.nextInt();
+							sc.nextLine();
+						} catch (Exception e) {
+							System.out.println("PEGI no valido, se asignara 0");
+							PEGI = 0;
+							sc.nextLine();
+						}
 						GestionRecursos.crearVideojuego(idRec, titulo, año, disponible, plataforma, PEGI);
 						break;
 
@@ -154,7 +174,7 @@ public class Main {
 						String autor = sc.nextLine();
 
 						System.out.print("Nuevo numero de paginas: ");
-						int paginas = sc.nextInt();
+						paginas = sc.nextInt();
 						sc.nextLine();
 
 						GestionRecursos.modificarLibro(idRec, titulo, año, disponible, autor, paginas);
@@ -167,8 +187,14 @@ public class Main {
 						String director = sc.nextLine();
 
 						System.out.print("Nueva duracion: ");
-						int duracion = sc.nextInt();
-						sc.nextLine();
+						try {
+							duracion = sc.nextInt();
+							sc.nextLine();
+						} catch (Exception e) {
+							System.out.println("Duracion no valida, se asignara 0");
+							duracion = 0;
+							sc.nextLine();
+						}
 
 						GestionRecursos.modificarPelicula(idRec, titulo, año, disponible, director, duracion);
 						break;
@@ -180,7 +206,7 @@ public class Main {
 						String plataforma = sc.nextLine();
 
 						System.out.print("Nuevo PEGI: ");
-						int PEGI = sc.nextInt();
+						PEGI = sc.nextInt();
 						sc.nextLine();
 
 						GestionRecursos.modificarVideojuego(idRec, titulo, año, disponible, plataforma, PEGI);
@@ -199,6 +225,7 @@ public class Main {
 
 					GestionRecursos.eliminarRecurso(idRec);
 
+					System.exit(0);
 					break;
 
 				// LISTAR RECURSOS
@@ -293,11 +320,11 @@ public class Main {
 						break;
 
 					}
-					
+
 					if (recurso != null) {
-					    System.out.println(recurso);
+						System.out.println(recurso);
 					} else {
-					    System.out.println("No se ha encontrado el recurso.");
+						System.out.println("No se ha encontrado el recurso.");
 					}
 
 					break;
@@ -307,10 +334,10 @@ public class Main {
 					break;
 
 				}
-				
-			break;
 
-				// USUARIOS
+				break;
+
+			// USUARIOS
 			case 2:
 
 				// OPCIONES USUARIOS
@@ -414,23 +441,29 @@ public class Main {
 						break;
 
 					}
-					
+
 					if (usuario != null) {
-					    System.out.println(usuario);
+						System.out.println(usuario);
 					} else {
-					    System.out.println("No se ha encontrado el usuario.");
+						System.out.println("No se ha encontrado el usuario.");
 					}
-					
+
 					break;
 
 				}
-				
+
 			case 3:
-				
+
 				System.out.println("Prestamos");
-				
+
 				break;
 
+			case 4:
+				System.out.println("saliendo del sistema...");
+				break;
+			default:
+				System.out.println("Opción no válida");
+				break;
 			}
 
 		}
