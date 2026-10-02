@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import modelo.Recurso;
 import modelo.Usuario;
+import controlador.GestionPrestamos;
 
 public class Main {
 
@@ -353,7 +354,7 @@ public class Main {
 				// CREAR USUARIO
 				case 1:
 
-					System.out.print("ID del usuario: ");
+					System.out.print("ID del usuario (un numero entero): ");
 					id = sc.nextInt();
 					sc.nextLine();
 
@@ -449,14 +450,62 @@ public class Main {
 					}
 
 					break;
-
 				}
-
-			case 3:
-
-				System.out.println("Prestamos");
-
 				break;
+
+			case 3: // PRESTAMOS
+                // Cargar los préstamos desde el archivo antes de mostrar el menú
+                GestionPrestamos.cargarPrestamos();
+
+                System.out.println(" --- Gestión de Préstamos --- " 
+                        + "\n 1- Registrar Préstamo" 
+                        + "\n 2- Registrar Devolución"
+                        + "\n 3- Comprobar Préstamos"
+                        + "\nPulsa enter para volver");
+
+                int opcionPrestamo = sc.nextInt();
+                sc.nextLine();
+
+                switch (opcionPrestamo) {
+                    // 1. REGISTRAR PRÉSTAMO
+                    case 1:
+                        System.out.print("Introduce el ID del usuario: ");
+                        int idUsrP = sc.nextInt();
+                        sc.nextLine();
+                        Usuario uP = GestionUsuarios.buscarUsuarioId(idUsrP);
+
+                        System.out.print("Introduce el ID del recurso (ej. L01): ");
+                        String idRecP = sc.nextLine();
+                        Recurso rP = GestionRecursos.buscarRecursoId(idRecP);
+
+                        GestionPrestamos.prestarRecurso(uP, rP);
+                        break;
+
+                    // 2. REGISTRAR DEVOLUCIÓN
+                    case 2:
+                        System.out.print("Introduce el ID del usuario: ");
+                        int idUsrD = sc.nextInt();
+                        sc.nextLine();
+                        Usuario uD = GestionUsuarios.buscarUsuarioId(idUsrD);
+
+                        System.out.print("Introduce el ID del recurso: ");
+                        String idRecD = sc.nextLine();
+                        Recurso rD = GestionRecursos.buscarRecursoId(idRecD);
+
+                        GestionPrestamos.devolverRecurso(uD, rD);
+                        break;
+
+                    // 3. COMPROBAR PRÉSTAMOS
+                    case 3:
+                        GestionPrestamos.comprobarPrestamos();
+                        break;
+
+                    default:
+                        System.out.println("Opción no válida");
+                        break;
+                }
+                break;
+
 
 			case 4:
 				System.out.println("saliendo del sistema...");
