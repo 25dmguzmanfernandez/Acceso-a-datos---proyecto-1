@@ -67,3 +67,10 @@ Gestion de Clases y paquetes
   - Listar (filtrar por tipo)
   - Lista de disponibilidad
   - Buscar (por id y por titulo)
+
+// PRESTAMOS 
+
+  - Usuario Usuario
+  - Recurso Recurso
+  - LocalDate fechaPrestamo
+  - LocalDate fechaDevolucion
